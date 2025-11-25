@@ -57,7 +57,7 @@ export default function Contact() {
       </div>
 
       <div className="mt-20 text-[10px] text-[#222]">
-        SYSTEM_ID: BBK_PORTFOLIO_V2 // ENCRYPTION_ACTIVE
+        
       </div>
     </section>
   );
