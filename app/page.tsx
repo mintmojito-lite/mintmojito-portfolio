@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { User, Briefcase, GraduationCap, Mail, Music } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion"; // Import motion
 
-import Hero from "../components/Hero";
+import HeroOusmane from "../components/HeroOusmane";
 import About from "../components/About";
 import Projects from "../components/Projects";
 import Certifications from "../components/Certifications";
@@ -73,7 +73,7 @@ export default function Home() {
         <SystemNotice />
 
         <div className="w-full">
-          <Hero />
+          <HeroOusmane />
         </div>
         
         <div className="w-full max-w-full pb-16">
