@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { ProjectStack } from "./ui/project-stack";
-import { ContainerScroll, CardSticky } from "./ui/container-scroll";
+import StackingCards from "./StackingCards";
+import DynamicSystems from "./DynamicSystems";
 
 const projects = [
   {
@@ -9,7 +9,7 @@ const projects = [
     name: "SRAV Secure Retentive Attenuation & Verification Time-Bound Data Decay Security System",
     short: "Data Decay Architecture",
     detail: "Cryptographic decay system enforcing time-bound access and irreversible precision attenuation for sensitive data.",
-    stack: ["Security","Data", "ZK-Logic", "Compliance"],
+    stack: ["Security", "Data", "ZK-Logic", "Compliance"],
     docLink: "https://github.com/mintmojito-lite"
   },
   {
@@ -76,24 +76,24 @@ const projects = [
     stack: ["Compiler", "OpenMP"],
     docLink: "https://github.com/mintmojito-lite"
   },
-{
-  id: "ATCA-AI",
-  name: "ATCA-AI",
-  short: "Active Thermal Control Architecture",
-  detail: "AI-driven urban thermal control system featuring real-time 3D airflow simulation, micro-climate prediction, and urban heat mitigation using reinforcement learning and voxel-based GIS modeling.",
-  stack: ["GeoAI", "PyTorch", "Reinforcement Learning", "PyVista", "NumPy"],
-  docLink: "https://github.com/mintmojito-lite/ATCA-AI"
-},
+  {
+    id: "ATCA-AI",
+    name: "ATCA-AI",
+    short: "Active Thermal Control Architecture",
+    detail: "AI-driven urban thermal control system featuring real-time 3D airflow simulation, micro-climate prediction, and urban heat mitigation using reinforcement learning and voxel-based GIS modeling.",
+    stack: ["GeoAI", "PyTorch", "Reinforcement Learning", "PyVista", "NumPy"],
+    docLink: "https://github.com/mintmojito-lite/ATCA-AI"
+  },
 
-{
-  id: "GHOST-AI",
-  name: "Ghost Navigation System",
-  short: "AI GPS-blackout navigation for hypersonic flight",
-  detail: "A physics + AI fusion navigation model that keeps a hypersonic glide vehicle on a safe path even when GPS and communication blackout happens due to plasma. Fully simulated, ethical aerospace research.",
-  stack: ["PyTorch", "NumPy", "Physics Sim", "GNC"],
-  docLink: "https://github.com/mintmojito-lite/Ghost-AI"
-}
-,
+  {
+    id: "GHOST-AI",
+    name: "Ghost Navigation System",
+    short: "AI GPS-blackout navigation for hypersonic flight",
+    detail: "A physics + AI fusion navigation model that keeps a hypersonic glide vehicle on a safe path even when GPS and communication blackout happens due to plasma. Fully simulated, ethical aerospace research.",
+    stack: ["PyTorch", "NumPy", "Physics Sim", "GNC"],
+    docLink: "https://github.com/mintmojito-lite/Ghost-AI"
+  }
+  ,
   {
     id: "CGRAG",
     name: "GPU-Optimized Graph Retrieval-Augmented Generation Query Analyzer",
@@ -102,7 +102,7 @@ const projects = [
     stack: ["CUDA", "RAG"],
     docLink: "https://github.com/mintmojito-lite"
   },
-  
+
   {
     id: "DFEC",
     name: "Dynamic Federated Edge Compliance Secure Adaptive Policy Enforcement on Edge Networks",
@@ -124,16 +124,18 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="w-full relative z-20">
-      <div className="py-12 px-8 max-w-7xl mx-auto text-center">
-        <h1 className="text-5xl font-bold text-[#333] hover:text-white mb-4">
-          Systems <span className="text-cyan-900 hover:text-cyan-400">Deployed</span>
+      <div className="py-20 px-8 max-w-7xl mx-auto text-center">
+        <h1 className="text-5xl font-bold text-gray-800 mb-4">
+          <DynamicSystems />
         </h1>
-        <p className="font-mono text-xs text-gray-500 uppercase tracking-widest">
-         
+        <p className="font-mono text-sm text-gray-500 uppercase tracking-widest">
+          Scroll down to explore
         </p>
       </div>
-      <ProjectStack projects={projects} />
-      <div className="h-[5vh]" />
+
+      <StackingCards projects={projects} />
+
+      <div className="h-[10vh]" />
     </section>
   );
 }

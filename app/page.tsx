@@ -3,16 +3,14 @@ import React, { useState, useEffect } from "react";
 import { User, Briefcase, GraduationCap, Mail, Music } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion"; // Import motion
 
-import HeroOusmane from "../components/HeroOusmane";
+import Hero from "../components/Hero";
 import About from "../components/About";
 import Projects from "../components/Projects";
 import Certifications from "../components/Certifications";
 import Playlist from "../components/Playlist";
 import Contact from "../components/Contact";
 import AIChatTerminal from "../components/AIChatTerminal";
-import { BackgroundPaths } from "@/components/ui/background-paths";
-import { GlassFilter, GlassDock, GlassItem } from "@/components/ui/glass-dock"; 
-import SystemNotice from "../components/SystemNotice";
+import { GlassFilter, GlassDock, GlassItem } from "@/components/ui/glass-dock";
 
 export default function Home() {
   const [isDockVisible, setIsDockVisible] = useState(true);
@@ -33,23 +31,23 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-black font-sans text-[#333] overflow-x-hidden">
-      
+    <div className="relative min-h-screen w-full bg-background font-sans text-foreground">
+
       {/* 1. Global Filter */}
       <GlassFilter />
 
-      {/* 2. AUTO-HIDING TOP DOCK */}
+      {/* 2. AUTO-HIDING LEFT DOCK */}
       <AnimatePresence>
         {isDockVisible && (
-          <motion.div 
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="fixed top-6 left-1/2 -translate-x-1/2 z-[100]"
+            className="fixed left-6 top-1/2 -translate-y-1/2 z-[100]"
           >
             <GlassDock>
-              <div className="flex items-center gap-2 px-2">
+              <div className="flex flex-col items-center gap-2 py-2">
                 <GlassItem icon={<User size={20} />} label="About" href="#about" />
                 <GlassItem icon={<Briefcase size={20} />} label="Projects" href="#projects" />
                 <GlassItem icon={<GraduationCap size={20} />} label="Learning" href="#learning" />
@@ -61,23 +59,15 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* 3. Background Layer */}
-      <div className="fixed inset-0 z-0">
-        <BackgroundPaths />
-      </div>
-
       {/* 4. Scrollable Content */}
       <div className="relative z-10 w-full flex flex-col items-center">
-        
-        {/* System Notice at the very top */}
-        <SystemNotice />
 
         <div className="w-full">
-          <HeroOusmane />
+          <Hero />
         </div>
-        
+
         <div className="w-full max-w-full pb-16">
-          <div className="border-t border-[#111]">
+          <div>
             <About />
           </div>
           <Projects />

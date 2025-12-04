@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #FEF2E2;
   --foreground: #171717;
 }
 
+/* Enforce light mode always for this design */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #FEF2E2;
+    --foreground: #171717;
   }
 }
 
@@ -18,6 +19,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 /* Only hide default cursor on desktop, keep it visible on mobile */
@@ -26,10 +28,13 @@ body {
     cursor: none;
   }
 
-  a, button, .cursor-pointer {
+  a,
+  button,
+  .cursor-pointer {
     cursor: none !important;
   }
 }
+
 /* Breathing animations */
 .breathing {
   animation: breathe 3s infinite;
@@ -40,9 +45,20 @@ body {
 }
 
 @keyframes breathe {
-  0% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.15); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.85; }
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
 }
 
 /* Chat fade-in */
@@ -51,46 +67,64 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Frosted glass */
 .chat-glass {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(22px);
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 /* Background Gradient Animation Keyframes */
 @keyframes moveHorizontal {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0px);
   }
+
   50% {
     transform: translateX(100px);
   }
 }
 
 @keyframes moveInCircle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(20px, -50px);
   }
+
   50% {
     transform: translate(-20px, 20px);
   }
+
   75% {
     transform: translate(-50px, -20px);
   }
 }
 
 @keyframes moveVertical {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(50px);
   }
@@ -122,7 +156,8 @@ body {
 .liquid-glass-card {
   position: relative;
   width: 100%;
-  border-radius: 1.75rem; /* ~28px */
+  border-radius: 1.75rem;
+  /* ~28px */
   isolation: isolate;
   box-shadow: 0px 6px 21px -8px rgba(255, 255, 255, 0.06);
   cursor: pointer;
@@ -164,7 +199,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1.25rem; /* 20px */
+  padding: 1.25rem;
+  /* 20px */
   color: white;
 }
 
@@ -174,7 +210,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.card-content p { opacity: 0.8; margin-bottom: 1rem; }
+.card-content p {
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
 
 .glass-button {
   background: rgba(255, 255, 255, 0.06);
@@ -187,5 +226,21 @@ body {
   transition: all 0.22s ease;
 }
 
-.glass-button:hover { background: rgba(255,255,255,0.12); }
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
 
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}

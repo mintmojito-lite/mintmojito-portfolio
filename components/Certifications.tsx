@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const organizations = [
-  { 
-    id: "LF", 
-    name: "Linux Foundation", 
+  {
+    id: "LF",
+    name: "Linux Foundation",
     courses: [
       "Open Source RT-Thread RTOS on RISC-V (LFD123)",
       "GitHub for Open Standards Development (LFD140)",
@@ -14,9 +14,9 @@ const organizations = [
       "Web Auth & API Security"
     ]
   },
-  { 
-    id: "DCSA", 
-    name: "Defense Counterintelligence and Security Agency", 
+  {
+    id: "DCSA",
+    name: "Defense Counterintelligence and Security Agency",
     courses: [
       "Introduction to DOD Zero Trust",
       "Enterprise Mission Assurance Support Service (eMASS)",
@@ -27,9 +27,9 @@ const organizations = [
       "ED514 Cybersecurity and Oversight of Info System Security"
     ]
   },
-  { 
-    id: "NVIDIA", 
-    name: "NVIDIA Deep Learning Institute", 
+  {
+    id: "NVIDIA",
+    name: "NVIDIA Deep Learning Institute",
     courses: [
       "Synthetic Data Generation in Isaac Sim",
       "Leveraging ROS 2 & HIL in Isaac Sim",
@@ -40,25 +40,25 @@ const organizations = [
       "Building RAG Agents with LLMs"
     ]
   },
-  { 
-    id: "BIG", 
-    name: "Basel Institute on Governance", 
-    courses: ["OSINT Certification"] 
+  {
+    id: "BIG",
+    name: "Basel Institute on Governance",
+    courses: ["OSINT Certification"]
   },
-  { 
-    id: "WHO", 
-    name: "World Health Organization", 
-    courses: ["HEARTS Technical Package"] 
+  {
+    id: "WHO",
+    name: "World Health Organization",
+    courses: ["HEARTS Technical Package"]
   },
-  { 
-    id: "UNESCO", 
-    name: "United Nations Educational, Scientific and Cultural Organization", 
-    courses: ["OER Development"] 
+  {
+    id: "UNESCO",
+    name: "United Nations Educational, Scientific and Cultural Organization",
+    courses: ["OER Development"]
   },
-  { 
-    id: "FEMA", 
-    name: "Federal Emergency Management Agency", 
-    courses: ["IPAWS & Hazardous Materials"] 
+  {
+    id: "FEMA",
+    name: "Federal Emergency Management Agency",
+    courses: ["IPAWS & Hazardous Materials"]
   },
 ];
 
@@ -70,7 +70,7 @@ export default function Certifications() {
 
   return (
     <section className="py-12 md:py-16 w-full relative" id="learning">
-      <div 
+      <div
         className="mx-auto max-w-4xl px-8 text-center relative"
         onMouseEnter={() => setShowOrgs(true)}
         onMouseLeave={() => {
@@ -78,23 +78,23 @@ export default function Certifications() {
           setSelectedOrg(null);
         }}
       >
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-700 transition-colors duration-500 hover:text-white cursor-pointer">
-          My Learning <span className="text-cyan-900 transition-colors duration-500 hover:text-cyan-400">Ecosystem</span>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00145C] transition-colors duration-500 hover:text-[#70D7FF] cursor-pointer">
+          My Learning <span className="font-semibold text-cyan-900 transition-all duration-300 hover:text-[#863FF3] hover:drop-shadow-[0_0_8px_rgba(134,63,243,0.8)] cursor-crosshair">Ecosystem</span>
         </h1>
-        
+
         <AnimatePresence>
           {showOrgs && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4"
             >
               {organizations.map((org) => (
-                <p 
+                <p
                   key={org.id}
                   onMouseEnter={() => setSelectedOrg(org)}
-                  className="font-mono text-sm text-gray-500 hover:text-white cursor-pointer transition-colors"
+                  className="font-mono text-sm text-[#00145C] hover:text-[#70D7FF] cursor-pointer transition-colors"
                 >
                   {org.name}
                 </p>
@@ -114,11 +114,11 @@ export default function Certifications() {
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-lg font-bold text-cyan-400 mb-4 text-center">{selectedOrg.name}</h3>
+              <h3 className="text-lg font-bold text-[#863FF3] drop-shadow-[0_0_8px_rgba(134,63,243,0.8)] mb-4 text-center">{selectedOrg.name}</h3>
               <ul className="space-y-2">
                 {selectedOrg.courses.map((course, j) => (
-                  <li key={j} className="text-sm font-mono text-gray-400 flex items-start gap-2">
-                     <span className="text-cyan-800 mt-0.5">›</span> {course}
+                  <li key={j} className="text-sm font-mono text-[#00145C] flex items-start gap-2">
+                    <span className="text-cyan-900 mt-0.5">›</span> {course}
                   </li>
                 ))}
               </ul>

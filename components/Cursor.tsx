@@ -1,40 +1,67 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function Cursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    const mouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      
-      // Check if hovering over clickable elements
+    const moveCursor = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+
       const target = e.target as HTMLElement;
       setIsHovering(!!target.closest("button, a, .cursor-pointer"));
     };
 
-    window.addEventListener("mousemove", mouseMove);
-    return () => window.removeEventListener("mousemove", mouseMove);
-  }, []);
+    window.addEventListener("mousemove", moveCursor);
+    return () => {
+      window.removeEventListener("mousemove", moveCursor);
+    };
+  }, [cursorX, cursorY]);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[999] hidden md:block"
-      animate={{
-        x: mousePosition.x - (isHovering ? 24 : 8),
-        y: mousePosition.y - (isHovering ? 24 : 8),
-        scale: isHovering ? 1.5 : 1,
-      }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-    >
-      {/* The Glow Dot */}
-      <div 
-        className={`rounded-full bg-cyan-400 mix-blend-difference transition-all duration-300 ${
-          isHovering ? "h-12 w-12 opacity-50" : "h-4 w-4 opacity-100"
-        }`} 
-      />
-    </motion.div>
+    <>
+      {/* Main Lavender Follower */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[998] hidden md:block mix-blend-multiply"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      >
+        <motion.div
+          className="rounded-full bg-purple-400/60 blur-xl"
+          animate={{
+            height: isHovering ? 120 : 60,
+            width: isHovering ? 120 : 60,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        />
+      </motion.div>
+
+      {/* Small Dot Cursor */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[999] hidden md:block"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      >
+        <div className={`rounded-full bg-black transition-all duration-300 ${isHovering ? "h-3 w-3" : "h-2 w-2"
+          }`} />
+      </motion.div>
+    </>
   );
 }

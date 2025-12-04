@@ -1,11 +1,13 @@
 import "./globals.css";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Dancing_Script } from "next/font/google";
 import Cursor from "../components/Cursor";
 import DancingCat from "../components/DancingCat";
-import BackgroundPaths from "../components/BackgroundPaths";
+import ParticleBackground from "../components/ui/particle-background";
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing" });
 
 export const metadata = {
   title: "Bala Bhaskar | Systems Engineer",
@@ -14,8 +16,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
-      <body className="bg-black antialiased">
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${dancingScript.variable}`}>
+      <body className="bg-background antialiased">
         {/* SVG filter for liquid glass effect (included once) */}
         <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden>
           <defs>
@@ -35,9 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Only these two global items should be here */}
         <Cursor />
         <DancingCat />
-        
-        {/* Full-page animated background (paths) */}
-        <BackgroundPaths />
+
+        {/* Magnetic Particle Background */}
+        <ParticleBackground />
+
 
         {/* This renders your page content (above the background) */}
         <div className="relative z-10">{children}</div>

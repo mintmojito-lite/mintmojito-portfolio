@@ -10,19 +10,19 @@ import SystemNotice from "../components/SystemNotice"; // Import the notice
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-[#333] overflow-x-hidden">
-      
+    <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+
       {/* The System Notice (Fixed at top) */}
       <SystemNotice />
 
       {/* Main Content Wrapper */}
       <div className="w-full flex flex-col items-center">
-        
+
         {/* Full Screen Intro */}
         <div className="w-full">
           <Hero />
         </div>
-        
+
         {/* Content Container */}
         <div className="w-full max-w-full">
           <About />

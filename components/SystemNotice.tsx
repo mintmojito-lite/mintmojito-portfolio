@@ -24,13 +24,13 @@ export default function SystemNotice() {
         transition={{ duration: 0.8, delay: 1 }}
         className="fixed top-4 z-[100] w-full text-center pointer-events-none"
       >
-        <div className="pointer-events-auto inline-block bg-black/60 backdrop-blur-md px-4 py-2 rounded text-sm text-[#888]">
+        <div className="pointer-events-auto inline-block bg-white/60 backdrop-blur-md px-4 py-2 rounded text-sm text-gray-600">
           <span>
             This page is interactive. Click everything for a better experience. Best viewed on Desktop.
           </span>
-          <button 
+          <button
             onClick={() => setIsVisible(false)}
-            className="ml-4 text-[#555] hover:text-white font-bold transition-colors cursor-pointer"
+            className="ml-4 text-[#555] hover:text-black font-bold transition-colors cursor-pointer"
           >
             ✕
           </button>
