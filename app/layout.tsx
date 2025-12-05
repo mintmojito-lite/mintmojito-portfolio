@@ -12,6 +12,12 @@ const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dan
 export const metadata = {
   title: "Bala Bhaskar | Systems Engineer",
   description: "High-Assurance Systems Portfolio",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
