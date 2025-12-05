@@ -44,7 +44,7 @@ export default function Home() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="fixed left-6 top-1/2 -translate-y-1/2 z-[100]"
+            className="fixed left-6 top-1/2 -translate-y-1/2 z-[100] hidden md:block"
           >
             <GlassDock>
               <div className="flex flex-col items-center gap-2 py-2">

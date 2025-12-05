@@ -179,7 +179,7 @@ const StackingCards = ({ projects }: StackingCardsProps) => {
 
     return (
         <ReactLenis root>
-            <div ref={container} className={`relative w-full ${isFinished ? 'h-auto py-20' : ''}`}>
+            <div ref={container} className={`relative w-full hidden md:block ${isFinished ? 'h-auto py-20' : ''}`}>
                 {!isFinished ? (
                     <motion.div>
                         {projects.map((project, i) => {
