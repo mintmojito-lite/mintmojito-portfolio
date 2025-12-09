@@ -34,7 +34,7 @@ const projects = [
     short: "Digital Forensics Ledger",
     detail: "Immutable chain-of-custody protocol with tamperproof hash-linked logging for evidence handling.",
     stack: ["Forensics", "Web3"],
-    docLink: "https://github.com/mintmojito-lite"
+    docLink: "https://docs.google.com/document/d/1UxoesyQdW26aruy70EgAc8fIsJP43v2sfPu0rD9wkbc/edit?usp=sharing"
   },
   {
     id: "MMDE",
@@ -44,22 +44,7 @@ const projects = [
     stack: ["Health-AI", "Analytics"],
     docLink: "https://github.com/mintmojito-lite"
   },
-  {
-    id: "LIPIPARVATHAM",
-    name: "Offline Indian-Language Phonetic Transliteration & Unicode Normalization System",
-    short: "Offline Transliterator",
-    detail: "Sub-50ms offline NLP transliteration engine supporting multiple Indian languages.",
-    stack: ["NLP", "Unicode", "Mobile"],
-    docLink: "https://github.com/mintmojito-lite"
-  },
-  {
-    id: "MINDBITE",
-    name: "Adaptive Mood-Based Food Recommendation & Nutrition Personalization Application",
-    short: "Mood-Based Food System",
-    detail: "PCOD, region and health-aware recommendation engine with high-fidelity UI ecosystem.",
-    stack: ["UX", "Firebase"],
-    docLink: "https://github.com/mintmojito-lite"
-  },
+  
   {
     id: "SCHEMIC",
     name: "Semantic Schema-Driven Code Generation Engine",

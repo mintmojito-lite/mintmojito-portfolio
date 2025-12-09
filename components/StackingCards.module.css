@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Main Scroll Track */
+.track {
+    height: 1000vh;
+    /* Long scroll track for slower animation */
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Sticky Wrapper to pin the card */
+.stickyWrapper {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* The Physical Card Container */
+.cardContainer {
+    width: 90%;
+    max-width: 1100px;
+    height: 600px;
+    /* Fixed height for consistency */
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    /* Content : Visual */
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.6s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media(max-width: 900px) {
+    .cardContainer {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 80vh;
+    }
+}
+
+/* LEFT SIDE: Content */
+.contentSide {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Stacked Content Logic
+   Instead of absolute positioning which breaks layout, 
+   we can use a grid stack or just absolute over the relative parent.
+   Since the parent .contentSide has fixed height context, absolute is safe here.
+*/
+.contentItem {
+    position: absolute;
+    inset: 3rem;
+    /* Match padding of parent */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(20px);
+}
+
+.contentItem.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Typography */
+.projectTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.projectDetail {
+    font-size: 1.125rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Tag Styles */
+.tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.tag {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Button Styles */
+.buttonWrapper {
+    margin-top: auto;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #111827;
+    color: white;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.buttonCircle {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #34d399;
+    /* Green dot */
+    border-radius: 50%;
+}
+
+
+/* RIGHT SIDE: Visuals */
+.visualSide {
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+    /* Default dark bg for video */
+}
+
+.visualItem {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.visualItem.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.videoWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.videoWrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    /* Dimmed by default */
+    filter: blur(8px);
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+}
+
+/* Hover Reveal Effect */
+.visualSide:hover .videoWrapper video {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+}
+
+.hoverOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.visualSide:hover .hoverOverlay {
+    opacity: 0;
+}
+
+.hoverBadge {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: #111827;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

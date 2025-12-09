@@ -2,18 +2,26 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import CanvasCursor from "./ui/canvas-cursor";
 import DynamicGreeting from "./DynamicGreeting";
 import { useState } from "react";
+import ConfettiCannon from "./ConfettiCannon";
+import GradientText from "./GradientText";
+
 
 export default function Hero() {
   return (
     <section id="hero-cursor-area" className="relative flex w-full min-h-screen flex-col justify-center items-center overflow-hidden px-6 text-center bg-transparent pb-12">
-      {/* The Canvas Cursor */}
+      {/* The Canvas Cursor - Keeping it, FluidGlass is background */}
       <div className="absolute inset-0 z-[1]">
         <CanvasCursor />
       </div>
 
+
+
+      {/* Confetti Cannon Overlay */}
+      <ConfettiCannon />
+
       {/* Content (Top Layer) */}
-      <div className="relative z-10 max-w-5xl">
-        <h1 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground transition-colors duration-500 hover:text-gray-600">
+      <div className="relative z-20 max-w-5xl pointer-events-none">
+        <h1 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground transition-colors duration-500 hover:text-gray-600 pointer-events-auto">
           <DynamicGreeting /> I'm{" "}
           <NamePopover />
         </h1>
@@ -22,7 +30,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="mx-auto max-w-3xl text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 font-mono transition-colors duration-500 hover:text-gray-800"
+          className="mx-auto max-w-3xl text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 font-mono transition-colors duration-500 hover:text-gray-800 pointer-events-auto"
         >
           "I believe making a systems is better than flexing the sugarcoated certificates."
         </motion.p>
@@ -65,7 +73,7 @@ function NamePopover() {
 
   return (
     <div
-      className="relative inline-block"
+      className="relative inline-block pointer-events-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -75,9 +83,14 @@ function NamePopover() {
       onMouseMove={handleMouseMove}
       style={{ perspective: 1000 }}
     >
-      <span className="text-purple-600 transition-colors duration-500 hover:text-purple-400 cursor-pointer">
+      <GradientText
+        colors={["#9333ea", "#c084fc", "#9333ea", "#c084fc", "#9333ea"]}
+        animationSpeed={6}
+        showBorder={false}
+        className="text-3xl sm:text-4xl md:text-5xl"
+      >
         Bala Bhaskar
-      </span>
+      </GradientText>
       <AnimatePresence>
         {isHovered && (
           <motion.div

@@ -1,0 +1,269 @@
+/* components/StaggeredMenu.css */
+.staggered-menu-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1500;
+}
+
+.staggered-menu-wrapper.fixed-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1500;
+    pointer-events: none;
+}
+
+.staggered-menu-wrapper[data-open="true"] {
+    pointer-events: auto;
+}
+
+.staggered-menu-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Keep full width to allow positioning */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Default spread */
+    padding: 2em;
+    background: transparent;
+    pointer-events: none;
+    z-index: 1520;
+}
+
+/* User wanted button to move. Let's keep it left-aligned with logo or just swap order if needed. 
+   Actually, "move the button now which side the side bar opens". Sidebar opens LEFT. 
+   So button should probably be on the LEFT too for easy access? 
+   Current code has logo left, button right (justify-space-between).
+   Let's group them on the left.
+*/
+
+.staggered-menu-header {
+    justify-content: space-between;
+    /* Default sm-toggle styles */
+    gap: 2rem;
+}
+
+
+.staggered-menu-header>* {
+    pointer-events: auto;
+}
+
+.sm-logo {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #000000;
+    letter-spacing: -0.05em;
+}
+
+.sm-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #000000;
+    font-weight: 500;
+    line-height: 1;
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+
+.sm-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sm-toggle:focus-visible {
+    outline: 2px solid #ffffffaa;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.sm-toggle-textWrap {
+    position: relative;
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    width: var(--sm-toggle-width, auto);
+    min-width: var(--sm-toggle-width, auto);
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+.sm-toggle-textInner {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.sm-toggle-line {
+    display: block;
+    height: 1em;
+    line-height: 1;
+}
+
+.sm-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+}
+
+.sm-panel-itemWrap {
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+}
+
+.sm-icon-line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+.sm-line {
+    display: none !important;
+}
+
+.staggered-menu-panel {
+    position: absolute;
+    top: 0;
+    left: 0 !important;
+    right: auto !important;
+    width: clamp(250px, 25vw, 400px);
+    /* Reduced width ~25vw */
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    /* More transparent/Glass */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    padding: 8em 2em 2em 2em;
+    /* Reduced padding */
+    overflow-y: auto;
+    z-index: 1510;
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.sm-prelayers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: clamp(250px, 25vw, 400px);
+    pointer-events: none;
+    z-index: 1505;
+}
+
+.sm-prelayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateX(-100%);
+}
+
+.sm-panel-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Hiding Socials completely as requested */
+.sm-socials {
+    display: none !important;
+}
+
+.sm-panel-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.sm-panel-item {
+    position: relative;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 2.5rem;
+    /* Slightly smaller */
+    cursor: pointer;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    transition: color 0.25s;
+    display: inline-block;
+    text-decoration: none;
+    padding-right: 1.4em;
+}
+
+.sm-panel-itemLabel {
+    display: inline-block;
+    will-change: transform;
+    transform-origin: 50% 100%;
+}
+
+.sm-panel-item:hover {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--sm-accent, #22d3ee);
+}
+
+.sm-panel-list[data-numbering] {
+    counter-reset: smItem;
+}
+
+.sm-panel-list[data-numbering] .sm-panel-item::after {
+    counter-increment: smItem;
+    content: counter(smItem, decimal-leading-zero);
+    position: absolute;
+    top: 0.2em;
+    right: 0;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: monospace;
+    color: var(--sm-accent, #22d3ee);
+    letter-spacing: 0;
+    pointer-events: none;
+    user-select: none;
+    opacity: var(--sm-num-opacity, 0);
+}
+
+@media (max-width: 640px) {
+    .staggered-menu-panel {
+        width: 100%;
+        padding-top: 6em;
+    }
+}

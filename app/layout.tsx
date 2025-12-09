@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter, JetBrains_Mono, Dancing_Script } from "next/font/google";
 import Cursor from "../components/Cursor";
-import DancingCat from "../components/DancingCat";
+// import DancingCat from "../components/DancingCat";
 import ParticleBackground from "../components/ui/particle-background";
 
 
@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </svg>
         {/* Only these two global items should be here */}
         <Cursor />
-        <DancingCat />
+        {/* DancingCat moved to page.tsx */}
 
         {/* Magnetic Particle Background */}
         <ParticleBackground />
